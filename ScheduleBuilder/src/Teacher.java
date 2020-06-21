@@ -43,7 +43,7 @@ public class Teacher {
 		this.available = available;
 	}
 
-	
+	//Andie's
 	public void classInitializer(String subject) {
 		if(period == prepPeriod) {
 			actualClasses.add(new Class("prep", period, 0,0));
@@ -54,9 +54,10 @@ public class Teacher {
 		period += 1;
 		if (period == 7) 
 			setAvailable(false);
-		
-	}
 	
+	}
+	/*
+	 * Ham's
 	public void classInitializer(String subject) {
 		boolean wasprep = false;
 		if(period == prepPeriod) {
@@ -71,31 +72,21 @@ public class Teacher {
 			System.out.println("No more classes");
 		else {
 			
-			actualClasses.add(new Class(subject, period, maximum, minimum));
+			actuaslClasses.add(new Class(subject, period, maximum, minimum));
 		}
 
 		if(leftOver.size() > 0)
 			addStudent(leftOver.remove(0));
 		
 	}
-	
-	public void addStudent(Student stu) {
-		/*
-		if(actualClasses.size() > 0) {
-			System.out.println("period: " + period);
-			if(!actualClasses.get(period).getAvailable()) {
-				leftOver.add(stu);
-				classInitializer(actualClasses.get(period).getSubject());
+	*/
+	public void addStudent(Student stu, String choice) {
+		for(Class actualClass: actualClasses)
+			if(actualClass.getSubject().equals(choice)) {
+				actualClass.adding(stu);
+				stu.addToSchedule(this, actualClass, period);
 			}
-		}
-		actualClasses.get(period).adding(stu);
-		stu.addToSchedule(this, actualClasses.get(period), period);
-		*/
-		
-		for(int i = 0; i < actualClasses.size(); i++) {
-			if
-		}
-		
+			
 	}
 	
 	public String toString() {
