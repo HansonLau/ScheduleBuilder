@@ -4,6 +4,7 @@ public class Teacher {
 
 	private String first;
 	private String last;
+	private boolean available;
 	private ArrayList<String> classes; // can teach
 	private int prepPeriod; // period they don't teach
 	private int maximum; // number of students
@@ -32,6 +33,28 @@ public class Teacher {
 	public int getPrepPeriod() {
 		
 		return prepPeriod;
+	}
+	
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	
+	public void classInitializer(String subject) {
+		if(period == prepPeriod) {
+			actualClasses.add(new Class("prep", period, 0,0));
+			actualClasses.get(period).setAvailable(false);
+			period++;
+		}
+		actualClasses.add(new Class(subject, period, maximum, minimum));
+		period += 1;
+		if (period == 7) 
+			setAvailable(false);
+		
 	}
 	
 	public void classInitializer(String subject) {

@@ -34,6 +34,29 @@ public class Scheduler {
 	//scheduling with periods in mind
 	
 	public void schedule() {
+		for (Student s: students) {
+			for (String choice: s.getChoices()) {
+				for (Teacher teacher: teachers) {
+					if (!teacher.isAvailable()) 
+						break;
+					//choice exists in ActualClasses and is available -> adds student
+					if (teacher.getActualClasses().contains(choice) && teacher.getActualClasses().get(teacher.getActualClasses().indexOf(choice)).getAvailable()) {
+						teacher.getActualClasses().get(teacher.getActualClasses().indexOf(choice)).adding(s);
+					}
+					//choice doesn't exist in ActualClasses or ActualClass isn't available -> creates new ActaulClass and adds student
+					else if(!teacher.getActualClasses().contains(choice) || !teacher.getActualClasses().get(teacher.getActualClasses().indexOf(choice)).getAvailable()) {
+						if (teacher.getClasses().contains(choice)) {
+							teacher.classInitializer(choice);
+							teacher.getActualClasses().get(teacher.getActualClasses().indexOf(choice)).adding(s);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	public void schedule() {
 
 		for(int i = 0; i < teachers.size(); i++) { // loops teachers			
 			Teacher currTeacher = teachers.get(i);
@@ -44,27 +67,21 @@ public class Scheduler {
 				for(String choice: s.getChoices()) { // loops student choices
 					System.out.println(choice);
 					for(int k = 0; k < currTeacher.getClasses().size(); k++) { // loops teacher classes
-						System.out.println("CT " +currTeacher.getClasses().get(k));
+						System.out.println("CT " + currTeacher.getClasses().get(k));
 						if(choice.equalsIgnoreCase(currTeacher.getClasses().get(k))) {
 							for(int t = 0; t < s.getSchedule().size(); t++) { // checks if class is added
 								if(s.getSchedule().get(t).indexOf(currTeacher.getClasses().get(k)) != -1)
-									found = true;
+									break;
 							}
-							if(found)
-								break;
-							for(int h = 0; h < currTeacher.getActualClasses().size(); h++) { // checks if class is already made
-								
-								if(choice.equalsIgnoreCase(currTeacher.getActualClasses().get(h).getSubject())) {
-									if(!currTeacher.getActualClasses().get(h).getAvailable()) {
+							
+							for(Class createdClass: currTeacher.getActualClasses()) { // checks if class is already made
+								if(choice.equalsIgnoreCase(createdClass.getSubject())) {
+									if(!createdClass.getAvailable()) 
 										created = false;
-										break;
-									}
-
-									created = true;
+									else
+										created = true;
 									break;
 								}
-								if(!created)
-									break;
 							}
 							
 							if(!created) {
