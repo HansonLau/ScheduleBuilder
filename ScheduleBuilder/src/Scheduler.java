@@ -44,9 +44,11 @@ public class Scheduler {
 							if(!create) {
 								teacher.classInitializer(choice);
 								teacher.addStudent(student, choice);
+								break;
 							}
 							else {
 								teacher.addStudent(student, choice);
+								break;
 							}
 						}
 							

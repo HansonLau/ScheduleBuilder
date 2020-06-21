@@ -54,7 +54,7 @@ public class Teacher {
 		period += 1;
 		if (period == 7) 
 			setAvailable(false);
-		
+	
 	}
 	/*
 	 * Ham's
@@ -72,7 +72,7 @@ public class Teacher {
 			System.out.println("No more classes");
 		else {
 			
-			actualClasses.add(new Class(subject, period, maximum, minimum));
+			actuaslClasses.add(new Class(subject, period, maximum, minimum));
 		}
 
 		if(leftOver.size() > 0)
