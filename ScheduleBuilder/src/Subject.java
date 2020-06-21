@@ -7,6 +7,7 @@ public class Subject {
 	public Subject(String subject) {
 		this.subject = subject;
 		createTeacherList();
+		System.out.println("test");
 	}
 
 	private void createTeacherList(){
