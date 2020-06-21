@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class TestClass {
 	private static ArrayList<Student> students = new ArrayList<Student>();
-	private static ArrayList<Subject> subjects = new ArrayList<Subject>();
+	private static ArrayList<Subject> subjects = new ArrayList<Subject>(); //may delete later
 	private static ArrayList<Teacher> teachers = new ArrayList<Teacher>();	
 	
 	public static void main(String[] args) throws FileNotFoundException { //This is main method, must run in this class

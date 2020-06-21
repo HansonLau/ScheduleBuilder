@@ -15,6 +15,10 @@ public class Student {
 		this.end = Integer.parseInt(end);
 	}
 	
+	public int getGrade() {
+		return grade;
+	}
+	
 	public String toString() {
 		return "Name: " + first + " " + last + "\nGrade: " + grade;
 	}
