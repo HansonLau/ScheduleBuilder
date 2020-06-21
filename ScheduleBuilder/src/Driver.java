@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Driver {
 	private static ArrayList<Student> students = new ArrayList<Student>();
+	private static ArrayList<Subject> subjects = new ArrayList<Subject>();
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		BufferedReader br = new BufferedReader(new FileReader("src\\StudentData.txt"));
@@ -30,6 +31,27 @@ public class Driver {
 			makeStudent(x);
 		}
 		
+		br = new BufferedReader(new FileReader("src\\SubjectData.txt"));
+		ArrayList<String> subjectNames = new ArrayList<String>();
+		s = "";
+		while(s!=null)
+		{
+			try 
+			{   //read each line into a String
+				s= br.readLine();
+				if(s!=null)  //add names to an ArrayList
+					subjectNames.add(s);
+			} 
+			catch (IOException e) 
+			{
+				System.out.println("Something went wrong");
+			}
+		}
+		for(String x:subjectNames)
+		{  
+			subjects.add(new Subject(s));
+		}
+		
 	}
 	public static void makeStudent(String p) 
 	{
@@ -46,6 +68,14 @@ public class Driver {
 			}
 		}
 		
+	}
+	
+	public static void makeSubject(String p) {
+		for (int i = 0; i < p.length(); i++) {
+			String subject = p.substring(0,i);
+			
+			
+		}
 	}
 	
 
