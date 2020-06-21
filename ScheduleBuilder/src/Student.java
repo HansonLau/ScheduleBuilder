@@ -29,11 +29,11 @@ public class Student {
 	}
 	
 	public void addToSchedule(Teacher t, Class c, int p) {
-		
 		schedule.add("Period " + p + " " + c + " " + t + "\n");
 		
 	}
 	
+
 	public String toString() {
 		return "Name: " + first + " " + last + "\nGrade: " + grade
 			+ "\nSchedule: \n" + schedule;
