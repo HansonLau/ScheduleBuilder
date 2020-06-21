@@ -99,7 +99,7 @@ public class TestClass {
 			makeTeacher(x);
 		}
 		*/
-		
+		/*
 		String c = "";
 		ArrayList<String> cdata = new ArrayList<String>();
 		br = new BufferedReader(new FileReader("src\\ClassData"));
@@ -121,6 +121,7 @@ public class TestClass {
 		{  
 			makeClass(x);
 		}
+		*/
 		
 		// may delete later
 		br = new BufferedReader(new FileReader("src\\SubjectData"));
@@ -149,7 +150,9 @@ public class TestClass {
 		
 		//run method from scheduler class
 		
-		
+		Scheduler roster = new Scheduler(students, teachers);
+		roster.schedule();
+		roster.showSchedule();
 		
 		
 		
@@ -230,13 +233,19 @@ public class TestClass {
 		
 		String fn = p.substring(0,p.indexOf(","));
 		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",") + fn.length() + 1;
-		String ln = p.substring(p.indexOf(","), secondComma);
+		String ln = p.substring(p.indexOf(",")+1, secondComma);
 		
 		int thirdComma = p.substring(secondComma+1).indexOf(",") + secondComma + 1;
 		String prep = p.substring(secondComma+1, thirdComma);
 		
+		int fourthComma = p.substring(thirdComma+1).indexOf(",") + thirdComma + 1;
+		String min = p.substring(thirdComma+1, fourthComma);
+		
+		int fifthComma = p.substring(fourthComma+1).indexOf(",") + fourthComma + 1;
+		String max = p.substring(fourthComma+1, fifthComma);
+		
 		ArrayList<String> classes= new ArrayList<String>();
-		for(int i = thirdComma;i<p.length();i++)
+		for(int i = fifthComma;i<p.length();i++)
 		{    //split the name at delimiter "," 
 			if(p.charAt(i)==',')
 			{ 
@@ -247,12 +256,12 @@ public class TestClass {
 				
 			}
 			
-			
-			teachers.add(new Teacher(fn, ln, classes, prep));
 		}
 		
+		teachers.add(new Teacher(fn, ln, classes, prep, min, max));
+		
 	}
-	
+	/*
 	public static void makeClass(String p){
 		
 		String subject = p.substring(0,p.indexOf(","));
@@ -263,12 +272,15 @@ public class TestClass {
 		String min = p.substring(secondComma + 1, thirdComma);
 		
 		String max = p.substring(thirdComma+1);
-
+	
+		//int p = Integer.parseInt(period);
+		//int minimum = Integer.parseInt(min);
+		//int maximum = Integer.parseInt(max);
 		
-		classes.add(new Class(subject, period, min, max));
+		classes.add(new Class(subject, period, minimum, maximum));
 		
 	}
-	
+	*/
 	// may delete later
 	public static void makeSubject(String p) {
 		for (int i = 0; i < p.length(); i++) {
