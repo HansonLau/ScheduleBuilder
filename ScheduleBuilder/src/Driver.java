@@ -187,19 +187,21 @@ public class Driver {
 		
 	}
 	
-	public static void makeTeacher(String p) 
-	{
+	public static void makeTeacher(String p){
+		
+		String fn = p.substring(0,p.indexOf(","));
+		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",");
+		String ln = p.substring(p.indexOf(","), secondComma);
+		
 		ArrayList<String> classes= new ArrayList<String>();
-		for(int i = 0;i<p.length();i++)
+		for(int i = secondComma;i<p.length();i++)
 		{    //split the name at , or space delimeter , 
 			if(p.charAt(i)==',')
 			{ 
-				String fn = p.substring(0,i);
-				int secondComma = p.substring(i + 1).indexOf(",");
-				String ln = p.substring(p.indexOf(","), secondComma);
-				
-				
-				classes.add(p.substring(i+1, p.substring(secondComma).indexOf(",")));
+				int end = p.substring(i+1, p.length()).indexOf(",");
+				if (end==-1)
+					end = p.length();
+				classes.add(p.substring(i+1, end));
 				
 			}
 			
