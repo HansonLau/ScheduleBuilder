@@ -11,7 +11,7 @@ public class TestClass {
 	private static ArrayList<Class> classes = new ArrayList<Class>();	
 	
 	public static void main(String[] args) throws FileNotFoundException { //This is main method, must run in this class
-		BufferedReader br = new BufferedReader(new FileReader("src\\StudentData.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("src\\StudentData"));
 		String s = "";
 		ArrayList<String> sdata = new ArrayList<String>();
 		
@@ -35,7 +35,7 @@ public class TestClass {
 		
 		String t = "";
 		ArrayList<String> tdata = new ArrayList<String>();
-		br = new BufferedReader(new FileReader("src\\TeacherData.txt"));
+		br = new BufferedReader(new FileReader("src\\TeacherData"));
 		
 		while(t!=null)
 		{
@@ -102,7 +102,7 @@ public class TestClass {
 		
 		String c = "";
 		ArrayList<String> cdata = new ArrayList<String>();
-		br = new BufferedReader(new FileReader("src\\TeacherData.txt"));
+		br = new BufferedReader(new FileReader("src\\ClassData"));
 		
 		while(c!=null)
 		{
@@ -123,7 +123,7 @@ public class TestClass {
 		}
 		
 		// may delete later
-		br = new BufferedReader(new FileReader("src\\SubjectData.txt"));
+		br = new BufferedReader(new FileReader("src\\SubjectData"));
 		ArrayList<String> subjectNames = new ArrayList<String>();
 		s = "";
 		
@@ -198,16 +198,16 @@ public class TestClass {
 	public static void makeStudent(String p){
 		
 		String fn = p.substring(0,p.indexOf(","));
-		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",");
-		String ln = p.substring(p.indexOf(","), secondComma);
+		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",") + fn.length() + 1;
+		String ln = p.substring(p.indexOf(",")+1, secondComma);
 
-		int thirdComma = p.substring(secondComma + 1).indexOf(",");
+		int thirdComma = p.substring(secondComma + 1).indexOf(",") + secondComma + 1;
 		String grade = p.substring(secondComma + 1, thirdComma);
 		
-		int fourthComma = p.substring(thirdComma+1).indexOf(",");
+		int fourthComma = p.substring(thirdComma+1).indexOf(",") + thirdComma + 1;
 		String start = p.substring(thirdComma+1, fourthComma);
 		
-		int fifthComma = p.substring(fourthComma+1).indexOf(",");
+		int fifthComma = p.substring(fourthComma+1).indexOf(",") + fourthComma + 1;
 		String stop = p.substring(fourthComma+1, fifthComma); 
 		
 		ArrayList <String> choices = new ArrayList<String>();
@@ -215,8 +215,8 @@ public class TestClass {
 		{    //split the name at delimiter "," 
 			if(p.charAt(i)==',')
 			{ 
-				int end = p.substring(i+1, p.length()).indexOf(",");
-				if (end==-1)
+				int end = p.substring(i+1).indexOf(",") + i + 1;
+				if (p.substring(i+1).indexOf(",")==-1)
 					end = p.length();
 				choices.add(p.substring(i+1, end));
 			}
@@ -229,10 +229,10 @@ public class TestClass {
 	public static void makeTeacher(String p){
 		
 		String fn = p.substring(0,p.indexOf(","));
-		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",");
+		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",") + fn.length() + 1;
 		String ln = p.substring(p.indexOf(","), secondComma);
 		
-		int thirdComma = p.substring(secondComma+1).indexOf(",");
+		int thirdComma = p.substring(secondComma+1).indexOf(",") + secondComma + 1;
 		String prep = p.substring(secondComma+1, thirdComma);
 		
 		ArrayList<String> classes= new ArrayList<String>();
@@ -240,8 +240,8 @@ public class TestClass {
 		{    //split the name at delimiter "," 
 			if(p.charAt(i)==',')
 			{ 
-				int end = p.substring(i+1, p.length()).indexOf(",");
-				if (end==-1)
+				int end = p.substring(i+1).indexOf(",") + i + 1;
+				if (p.substring(i+1).indexOf(",")==-1)
 					end = p.length();
 				classes.add(p.substring(i+1, end));
 				
@@ -256,16 +256,14 @@ public class TestClass {
 	public static void makeClass(String p){
 		
 		String subject = p.substring(0,p.indexOf(","));
-		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",");
-		String period = p.substring(p.indexOf(","), secondComma);
+		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",") + subject.length() + 1;
+		String period = p.substring(p.indexOf(",") + 1, secondComma);
 
-		int thirdComma = p.substring(secondComma + 1).indexOf(",");
+		int thirdComma = p.substring(secondComma + 1).indexOf(",") + secondComma + 1;
 		String min = p.substring(secondComma + 1, thirdComma);
 		
-		int fourthComma = p.substring(thirdComma+1).indexOf(",");
-		String max = p.substring(thirdComma+1, fourthComma);
+		String max = p.substring(thirdComma+1);
 
-		
 		
 		classes.add(new Class(subject, period, min, max));
 		
