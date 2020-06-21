@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Scheduler {
-	
+  
 	private static ArrayList<Student> students = new ArrayList<Student>();
 	private static ArrayList<Subject> subjects = new ArrayList<Subject>(); //may delete later
 	private static ArrayList<Teacher> teachers = new ArrayList<Teacher>();	
