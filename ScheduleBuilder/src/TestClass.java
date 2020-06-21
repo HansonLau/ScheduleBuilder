@@ -4,12 +4,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Driver {
+public class TestClass {
 	private static ArrayList<Student> students = new ArrayList<Student>();
-	private static ArrayList<Subject> subjects = new ArrayList<Subject>();
+	private static ArrayList<Subject> subjects = new ArrayList<Subject>(); //may delete later
 	private static ArrayList<Teacher> teachers = new ArrayList<Teacher>();	
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException { //This is main method, must run in this class
 		BufferedReader br = new BufferedReader(new FileReader("src\\StudentData.txt"));
 		String s = "";
 		ArrayList<String> sdata = new ArrayList<String>();
@@ -98,6 +98,8 @@ public class Driver {
 			makeTeacher(x);
 		}
 		*/
+		
+		// may delete later
 		br = new BufferedReader(new FileReader("src\\SubjectData.txt"));
 		ArrayList<String> subjectNames = new ArrayList<String>();
 		s = "";
@@ -119,6 +121,14 @@ public class Driver {
 		{  
 			subjects.add(new Subject(s));
 		}
+		
+		
+		
+		//run method from scheduler class
+		
+		
+		
+		
 		
 	}
 	
@@ -171,9 +181,15 @@ public class Driver {
 		String grade = p.substring(secondComma + 1);
 		int thirdComma = p.substring(secondComma + 1).indexOf(",");
 		
+		int fourthComma = p.substring(thirdComma+1).indexOf(",");
+		String start = p.substring(thirdComma+1, fourthComma);
+		
+		int fifthComma = p.substring(fourthComma+1).indexOf(",");
+		String stop = p.substring(fourthComma+1, fifthComma); 
+		
 		ArrayList <String> choices = new ArrayList<String>();
-		for(int i = thirdComma;i<p.length();i++)
-		{    //split the name at , or space delimeter , 
+		for(int i = fifthComma;i<p.length();i++)
+		{    //split the name at delimiter "," 
 			if(p.charAt(i)==',')
 			{ 
 				int end = p.substring(i+1, p.length()).indexOf(",");
@@ -183,7 +199,7 @@ public class Driver {
 			}
 		}
 		
-		students.add(new Student(fn, ln, grade, choices));
+		students.add(new Student(fn, ln, grade, choices, start, stop));
 		
 	}
 	
@@ -193,9 +209,12 @@ public class Driver {
 		int secondComma = p.substring(p.indexOf(",") + 1).indexOf(",");
 		String ln = p.substring(p.indexOf(","), secondComma);
 		
+		int thirdComma = p.substring(secondComma+1).indexOf(",");
+		String prep = p.substring(secondComma+1, thirdComma);
+		
 		ArrayList<String> classes= new ArrayList<String>();
-		for(int i = secondComma;i<p.length();i++)
-		{    //split the name at , or space delimeter , 
+		for(int i = thirdComma;i<p.length();i++)
+		{    //split the name at delimiter "," 
 			if(p.charAt(i)==',')
 			{ 
 				int end = p.substring(i+1, p.length()).indexOf(",");
@@ -206,18 +225,20 @@ public class Driver {
 			}
 			
 			
-			teachers.add(new Teacher(fn, ln, classes));
+			teachers.add(new Teacher(fn, ln, classes, prep));
 		}
 		
 	}
-
+	// may delete later
 	public static void makeSubject(String p) {
 		for (int i = 0; i < p.length(); i++) {
 			String subject = p.substring(0,i);
 			
-			
 		}
 	}
+
+	
+	
 	
 
 }

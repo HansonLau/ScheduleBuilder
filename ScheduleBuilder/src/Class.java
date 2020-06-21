@@ -13,6 +13,8 @@ public class Class {
 		this.subject = subject;
 		this.period = Integer.parseInt(period);
 		this.capacity = Integer.parseInt(capacity);
-		students = null;
+		//students = null;
 	}
+	
+	
 }
